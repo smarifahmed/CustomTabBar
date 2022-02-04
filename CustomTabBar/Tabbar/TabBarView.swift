@@ -19,6 +19,8 @@ class TabBarView: UIView {
         layout.minimumInteritemSpacing = 0
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
+        collectionView.layer.borderWidth = 3
+        collectionView.layer.borderColor = UIColor.systemPink.cgColor
         return collectionView
     }()
     

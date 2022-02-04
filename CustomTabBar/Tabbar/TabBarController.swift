@@ -7,6 +7,8 @@
 
 import UIKit
 
+var TAB_BAR : TabBarController!
+
 class TabBarController: UIViewController {
     
     static let viewControllers : [UIViewController] = [GreenVC(),
@@ -20,6 +22,7 @@ class TabBarController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("🧩 TabBar Controller Loaded")
+        TAB_BAR = self
         prepareTabVarView()
         switchTab(0)
     }
@@ -52,6 +55,16 @@ class TabBarController: UIViewController {
         }
         
         oldIndex = index
+    }
+    
+    public func hideTabbar(){
+        tabBarTopAnchor.constant = 0
+        UIView.animate(withDuration: 0.3, animations: view.layoutIfNeeded)
+    }
+    
+    public func showTabbar(){
+        tabBarTopAnchor.constant = -TabBarView.selfHeight
+        UIView.animate(withDuration: 0.3, animations: view.layoutIfNeeded)
     }
 }
 

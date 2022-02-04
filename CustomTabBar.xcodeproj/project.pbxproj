@@ -106,9 +106,9 @@
 		298C993827AD6AAF00C520A5 /* Tabbar */ = {
 			isa = PBXGroup;
 			children = (
+				298C993B27AD6AAF00C520A5 /* Elements */,
 				298C993927AD6AAF00C520A5 /* TabBarCell.swift */,
 				298C993A27AD6AAF00C520A5 /* TabBarView.swift */,
-				298C993B27AD6AAF00C520A5 /* Elements */,
 				298C994027AD6AAF00C520A5 /* TabBarController.swift */,
 			);
 			path = Tabbar;
