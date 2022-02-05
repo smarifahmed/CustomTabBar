@@ -13,6 +13,6 @@ Assin Your `ViewControllers` to `TabBarController`'s `[viewControllers]` array.
 Design your required cell in `TabBarCell`
 As the basic component is a `UICollectionView`, feel free to contomize according to your likings.
 
-![](https://github.com/smarifahmed/CustomTabBar/TabBar.gif)
+![](https://github.com/smarifahmed/CustomTabBar/blob/main/TabBar.gif)
 
  
