@@ -9,10 +9,12 @@ import UIKit
 
 class TabBarView: UIView {
 
+    /** Give your TabBar height here */
     static let selfHeight : CGFloat = 85
     
     var tappedIndex : ((Int) -> Void)?
     
+    /** Elements Indicator Holder CollectionView */
     private let collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -24,6 +26,7 @@ class TabBarView: UIView {
         return collectionView
     }()
     
+    /** Demo Dataset For collectionView*/
     private let colorSet : [UIColor] = [.systemGreen,
                                         .systemRed,
                                         .systemYellow,

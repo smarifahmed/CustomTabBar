@@ -7,16 +7,20 @@
 
 import UIKit
 
+/** Globar Reff. For accessing TabBar *Hide/Show/Switch* Functions */
 var TAB_BAR : TabBarController!
 
 class TabBarController: UIViewController {
     
+    /** Assign your ViewControllers to this array here */
     static let viewControllers : [UIViewController] = [GreenVC(),
                                                        RedVC(),
                                                        YellowVC(),
                                                        PurpleVC()]
     
     private var oldIndex : Int?
+    
+    /** For Hide and Show (Slide up/ Down) animation **/
     private var tabBarTopAnchor : NSLayoutConstraint!
     
     override func viewDidLoad() {
@@ -26,6 +30,8 @@ class TabBarController: UIViewController {
         prepareTabVarView()
         switchTab(0)
     }
+    
+    //MARK: - TabBarView Related
     
     private func prepareTabVarView(){
         let tabBarView = TabBarView()
@@ -39,13 +45,19 @@ class TabBarController: UIViewController {
         tabBarTopAnchor.isActive = true
         tabBarView.heightAnchor.constraint(equalToConstant: TabBarView.selfHeight).isActive = true
         
+        /** Call back for getting the tapped Index **/
         tabBarView.tappedIndex = {[weak self] (index) in
             print("☘️ Tapped Index :",index)
             self!.switchTab(index)
         }
     }
     
-    private func switchTab(_ index : Int){
+    
+    //MARK: - Tab Switch function
+    
+    /// For Switching Tabs
+    /// - Parameter index: ViewController index from  *[viewControllers]*
+    func switchTab(_ index : Int){
         guard index != oldIndex else { return }
         
         add(TabBarController.viewControllers[index])
@@ -57,6 +69,9 @@ class TabBarController: UIViewController {
         oldIndex = index
     }
     
+    //MARK: - Hide / Show Functions
+    
+    /// Write your hide and show animations here
     public func hideTabbar(){
         tabBarTopAnchor.constant = 0
         UIView.animate(withDuration: 0.3, animations: view.layoutIfNeeded)
@@ -66,32 +81,30 @@ class TabBarController: UIViewController {
         tabBarTopAnchor.constant = -TabBarView.selfHeight
         UIView.animate(withDuration: 0.3, animations: view.layoutIfNeeded)
     }
+    
+    //*******************************
 }
 
 // MARK: - View Containment API
+
 extension TabBarController {
-
-  func add(_ child: UIViewController, frame: CGRect? = nil) {
-    // 1.
-    addChild(child)
-
-    // 2.
-    if let frame = frame {
-      child.view.frame = frame
-    }
-
-    // 3.
-    view.addSubview(child.view)
-    view.sendSubviewToBack(child.view)
     
-    // 4.
-    child.didMove(toParent: self)
-  }
-
-  /// Remove a vc previously added from the children
-  func remove(_ child: UIViewController) {
-    child.willMove(toParent: nil)
-    child.view.removeFromSuperview()
-    child.removeFromParent()
-  }
+    private func add(_ child: UIViewController, frame: CGRect? = nil) {
+        addChild(child)
+        
+        if let frame = frame {
+            child.view.frame = frame
+        }
+        
+        view.addSubview(child.view)
+        view.sendSubviewToBack(child.view)
+        child.didMove(toParent: self)
+    }
+    
+    /// Remove a vc previously added from the children
+    private func remove(_ child: UIViewController) {
+        child.willMove(toParent: nil)
+        child.view.removeFromSuperview()
+        child.removeFromParent()
+    }
 }
